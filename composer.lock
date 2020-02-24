@@ -4,8 +4,55 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5ac7407dc851b5e4eb9c002f1ba28c68",
+    "content-hash": "35fd75377e4b67115bbdc87e47a1551c",
     "packages": [
+        {
+            "name": "beyonic/beyonic-php",
+            "version": "0.0.15",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/beyonic/beyonic-php.git",
+                "reference": "c4b00a9fd0adf5bcd417d8faf8d2a379d03b2614"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/beyonic/beyonic-php/zipball/c4b00a9fd0adf5bcd417d8faf8d2a379d03b2614",
+                "reference": "c4b00a9fd0adf5bcd417d8faf8d2a379d03b2614",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": ">=5.2"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "lib/Beyonic/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Beyonic",
+                    "homepage": "http://beyonic.com"
+                }
+            ],
+            "description": "Beyonic PHP Library",
+            "homepage": "http://beyonic.com",
+            "keywords": [
+                "Mobile Payments",
+                "api",
+                "beyonic",
+                "mobile money",
+                "mpesa"
+            ],
+            "time": "2019-07-07T18:41:12+00:00"
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "v0.1.1",

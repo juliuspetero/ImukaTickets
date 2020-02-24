@@ -22,4 +22,5 @@ Route::resource('/categories', 'CategoriesController');
 Route::resource('/types', 'TypesController');
 Route::resource('/transactions', 'TransactionsController');
 Route::resource('/tickets', 'TicketsController');
+Route::resource('/events', 'EventsController');
 

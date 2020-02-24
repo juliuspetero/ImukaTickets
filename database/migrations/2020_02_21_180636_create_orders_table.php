@@ -15,10 +15,12 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('userId');
-            $table->bigInteger('ticketId');
-            $table->bigInteger('numberOfTickets');
+            $table->string('firstName');
+            $table->string('lastName');
+            $table->string('email');
+            $table->string('phoneNumber');
             $table->float('totalCost');
+            $table->uuid('transaction_id')->nullable();
             $table->timestamps();
         });
     }

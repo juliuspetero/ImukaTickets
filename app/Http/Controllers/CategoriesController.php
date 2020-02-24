@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\SaveCategoryRequest;
+use App\Category;
 
 class CategoriesController extends Controller
 {
@@ -13,17 +15,16 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $categories = Category::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $assocCategories = [];
+
+       foreach ($categories as $category ) {
+           $category->types = $category->types;
+           array_push($assocCategories, $category);
+       }
+        
+        return $assocCategories;
     }
 
     /**
@@ -32,12 +33,15 @@ class CategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SaveCategoryRequest $request)
     {
-        //
+        $category = new Category();
+        $category->title = $request->title;
+        $category->save();
+        return $category;
     }
 
-    /**
+       /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -45,18 +49,10 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        $category = Category::find($id);
+        $category->types = $category->types;
+        return $category;
+      
     }
 
     /**

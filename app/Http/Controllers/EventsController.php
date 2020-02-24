@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\SaveTypeRequest;
-use App\Type;
+use App\Http\Requests\SaveEventRequest;
+use App\Event;
 
-class TypesController extends Controller
+class EventsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,9 @@ class TypesController extends Controller
      */
     public function index()
     {
-        return Type::all();
+        return Event::all();
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -24,19 +25,13 @@ class TypesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SaveTypeRequest $request)
+    public function store(SaveEventRequest $request)
     {
-        $type = new Type();
-        $type->category_id = $request->category_id;
-        $type->title = $request->title;
-        $type->save();
-        return $type;  
-    }
-
-    public function show($id)
-    {
-        return Type::find($id);
-      
+        $event = new Event();
+        $event->title = $request->title;
+        $event->description = $request->description;
+        $event->save();
+        return $event;
     }
 
     /**

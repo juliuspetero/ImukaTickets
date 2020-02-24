@@ -15,7 +15,16 @@ class TicketsController extends Controller
      */
     public function index()
     {
-        return Ticket::all();
+       
+        $tickets = Ticket::all();
+
+
+        if($tickets->count() > 0){
+            return Ticket::with('event')->with('orders')->get();
+        }
+
+        return $tickets;
+    
     }
 
     /**
@@ -27,8 +36,7 @@ class TicketsController extends Controller
     public function store(SaveTicketRequest $request)
     {
         $ticket = new Ticket();
-        $ticket->name = $request->name;
-        $ticket->description = $request->description;
+        $ticket->event_id = $request->event_id;
         $ticket->price = $request->price;
         $ticket->save();
         return $ticket;
@@ -42,7 +50,10 @@ class TicketsController extends Controller
      */
     public function show($id)
     {
-        return Ticket::find($id);
+        $ticket = Ticket::find($id);
+        $ticket->event = Ticket::find($id)->event;
+        $ticket->orders = Ticket::find($id)->orders;
+        return $ticket;
     }
 
 

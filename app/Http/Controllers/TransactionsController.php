@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Transaction;
 
 class TransactionsController extends Controller
 {
@@ -13,28 +14,11 @@ class TransactionsController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        $transactions = Transaction::all();
+        if ($transactions->count() > 0){
+            return Transaction::with('order')->get();
+        }
+        return [];
     }
 
     /**
@@ -45,30 +29,37 @@ class TransactionsController extends Controller
      */
     public function show($id)
     {
-        //
+        $transaction = Transaction::find($id);
+        if($transaction != null){
+            $transaction->order = Transaction::find($id)->order;
+            return $transaction;
+        }else{
+           return response()->json(['errorMessage' => "No transaction with that ID = " . $id], 404);
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
+       /**
+     * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+ 
+
+    // Callback URL to update the transaction
     public function update(Request $request, $id)
     {
-        //
+
+        $transaction = [
+            'id' => $request->id,
+            'status' => $request->status,
+            'amount' => $request->amount
+        ];
+
+        return [
+            'transaction' => $transaction,
+            'id' => $id
+        ];
     }
 
     /**

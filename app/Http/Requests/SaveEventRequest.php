@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SaveTicketRequest extends FormRequest
+class SaveEventRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,8 @@ class SaveTicketRequest extends FormRequest
     public function rules()
     {
         return [
-            'event_id' => 'required|max:100',
-            'price' => 'required|digits_between:1,9'
+            'title' => 'required|max:100',
+            'description' => 'max:500'
         ];
     }
 }
